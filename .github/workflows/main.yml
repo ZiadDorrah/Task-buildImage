@@ -1,1 +1,11 @@
-
+on:
+  push:
+    branches:
+      - master
+      - dev
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    steps:
+      - name: "Dorrah"
+        run:  echo  "Hello"
