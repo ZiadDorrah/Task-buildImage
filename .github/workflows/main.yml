@@ -4,7 +4,13 @@ on:
       - main
 jobs:
   build:
-    runs-on: Ubuntu-latest
+    runs-on: ubuntu-latest 
     steps:
-      - name: "Dorrah"
-        run:  echo  "Hello"
+      - uses: actions/checkout@v3
+
+      - name: " login to dockerhub"
+        run: docker login --username ${{ secrets.DOCKERUSERNAME}} --password ${{ secrets.DOCKERPASS }}
+      - name: " building docker "
+        run: docker build -t ${{ secrets.DOCKERUSERNAME}}/taskjava .
+      - name: " pushing to docker hub "
+        run: docker push ${{ secrets.DOCKERUSERNAME}}/taskjava
